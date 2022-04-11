@@ -1,17 +1,35 @@
-var supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints;
-
 var carouselContainer = document.querySelector('.carousel__container');
+var carouselImages = Array.from(document.querySelectorAll('.carousel__container .tops__item .tops__img'));
 var carouselPrev = document.querySelector('.carousel__prev');
 var carouselNext = document.querySelector('.carousel__next');
 
-carouselContainer.addEventListener('mousedown', mouseDownHandler);
-carouselContainer.addEventListener('mouseleave', mouseLeaveHandler);
+window.addEventListener('load', function (e) {
+  uploadVisibleCarouselItems();
+  var supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints;
 
-if (supportsTouch) {
-  carouselNext.classList.remove('active');
-}
+  carouselContainer.addEventListener('mousedown', mouseDownHandler);
+  carouselContainer.addEventListener('mouseleave', mouseLeaveHandler);
+  carouselContainer.addEventListener('scroll', uploadVisibleCarouselItems);
+  window.addEventListener('resize', uploadVisibleCarouselItems);
+
+  if (supportsTouch) {
+    carouselNext.classList.remove('active');
+  }
+});
 
 var pos = { left: 0, x: 0 };
+
+function uploadVisibleCarouselItems() {
+  var carouselContainerClientRect = carouselContainer.getBoundingClientRect();
+  var carouselContainerRight = carouselContainerClientRect.x + carouselContainerClientRect.width;
+
+  carouselImages.forEach((img) => {
+    var isUploaded = !!img.style.backgroundImage;
+    if (img.getBoundingClientRect().x < carouselContainerRight && !isUploaded) {
+      img.style.backgroundImage = "url('" + img.dataset.img + "')";
+    }
+  });
+}
 
 function mouseDownHandler(e) {
   pos = {
