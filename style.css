@@ -1,0 +1,148 @@
+:root {
+  --app-bg-main: #2a1c42;
+  --app-bg-secondary: #1f1531;
+  --app-bg-rgba-0: rgba(42, 28, 66, 0);
+  --app-bg-rgba-100: #2a1c42;
+  --app-main-font: #fff;
+  --app-secondary-font: #d4d2d9;
+  --app-light-font: #9292a9;
+  --app-primary-font: #a5a1ad;
+  --app-line: hsla(0, 0%, 100%, 0.1);
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--app-bg-main);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+h1,
+h2 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  color: var(--app-main-font);
+}
+
+@media (max-width: 1024px) {
+  h1,
+  h2 {
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.demo-wrapper {
+  margin: 50px;
+}
+.carousel {
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel__next,
+.carousel__prev {
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 1;
+  height: 100%;
+  width: 50px;
+  text-align: center;
+  font-size: 28px;
+  top: 0;
+  pointer-events: none;
+}
+
+.carousel__prev {
+  left: 0;
+  background: linear-gradient(90deg, var(--app-bg-rgba-100), var(--app-bg-rgba-0));
+}
+
+.carousel__next {
+  right: 0;
+  background: linear-gradient(90deg, var(--app-bg-rgba-0), var(--app-bg-rgba-100));
+}
+
+.carousel__prev,
+.carousel__next {
+  display: none;
+}
+
+.carousel__next.active,
+.carousel__prev.active {
+  display: flex;
+}
+
+.carousel__container {
+  overflow-x: scroll;
+  margin: 0;
+  scrollbar-width: none;
+}
+
+.carousel__container.active {
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.carousel__container.active a,
+.carousel__container.active h2 {
+  pointer-events: none;
+}
+
+.carousel__container::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel__list {
+  display: flex;
+  transition: 0.5s;
+}
+
+.tops__item {
+  min-width: 60px;
+  max-width: 60px;
+  margin: 0 4px;
+}
+
+.tops__item a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.tops__title {
+  font-size: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-top: 8px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.tops__img {
+  width: 100%;
+  min-height: 60px;
+  max-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  background-size: cover;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-color: #1f1531;
+}
