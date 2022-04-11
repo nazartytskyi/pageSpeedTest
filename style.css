@@ -1,13 +1,8 @@
 :root {
   --app-bg-main: #2a1c42;
-  --app-bg-secondary: #1f1531;
   --app-bg-rgba-0: rgba(42, 28, 66, 0);
   --app-bg-rgba-100: #2a1c42;
   --app-main-font: #fff;
-  --app-secondary-font: #d4d2d9;
-  --app-light-font: #9292a9;
-  --app-primary-font: #a5a1ad;
-  --app-line: hsla(0, 0%, 100%, 0.1);
 }
 
 body {
@@ -45,9 +40,11 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
 .demo-wrapper {
   margin: 50px;
 }
+
 .carousel {
   margin: 0;
   position: relative;

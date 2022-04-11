@@ -1,11 +1,17 @@
+var supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints;
+
 var carouselContainer = document.querySelector('.carousel__container');
 var carouselPrev = document.querySelector('.carousel__prev');
 var carouselNext = document.querySelector('.carousel__next');
 
 carouselContainer.addEventListener('mousedown', mouseDownHandler);
+carouselContainer.addEventListener('mouseleave', mouseLeaveHandler);
 
-var pos = { top: 0, left: 0, x: 0, y: 0 };
-var isMouseDown = false;
+if (supportsTouch) {
+  carouselNext.classList.remove('active');
+}
+
+var pos = { left: 0, x: 0 };
 
 function mouseDownHandler(e) {
   pos = {
@@ -18,7 +24,6 @@ function mouseDownHandler(e) {
 
   document.addEventListener('mousemove', mouseMoveHandler);
   document.addEventListener('mouseup', mouseUpHandler);
-  return false;
 }
 
 function mouseMoveHandler(e) {
@@ -34,6 +39,13 @@ function mouseUpHandler(e) {
   carouselContainer.classList.remove('active');
   carouselContainer.style.removeProperty('user-select');
 
+  updateShadows();
+}
+
+function mouseLeaveHandler(e) {
+  updateShadows();
+}
+function updateShadows() {
   if (carouselContainer.scrollLeft > 0) {
     carouselPrev.classList.add('active');
   } else {
